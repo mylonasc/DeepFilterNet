@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict, Final
+from typing import Dict
 
 import torch
 import torch.nn.functional as F
@@ -18,9 +18,9 @@ class MultiFrameModule(nn.Module, ABC):
         IFC: Inter-frame correlation vector: PSD*u, u: selection vector. Notated as `rxx`
     """
 
-    num_freqs: Final[int]
-    frame_size: Final[int]
-    need_unfold: Final[bool]
+    num_freqs: int
+    frame_size: int
+    need_unfold: bool
 
     def __init__(self, num_freqs: int, frame_size: int, lookahead: int = 0):
         """Multi-Frame filtering module.
@@ -133,7 +133,7 @@ class CRM(MultiFrameModule):
 
 
 class DF(MultiFrameModule):
-    conj: Final[bool]
+    conj: bool
     """Deep Filtering."""
 
     def __init__(self, num_freqs: int, frame_size: int, lookahead: int = 0, conj: bool = False):
@@ -205,7 +205,7 @@ class MfWf(MultiFrameModule):
 
 
 class MfWfDf(MfWf):
-    eps_diag: Final[float]
+    eps_diag: float
 
     def __init__(
         self,

@@ -8,7 +8,6 @@ from torch import Tensor, nn
 from torch.nn import functional as F
 from torch.nn import init
 from torch.nn.parameter import Parameter
-from typing_extensions import Final
 
 from df.model import ModelParams
 from df.utils import as_complex, as_real, get_device, get_norm_alpha
@@ -279,8 +278,8 @@ class ExponentialUnitNorm(nn.Module):
     ```
     """
 
-    alpha: Final[float]
-    eps: Final[float]
+    alpha: float
+    eps: float
 
     def __init__(self, alpha: float, num_freq_bins: int, eps: float = 1e-14):
         super().__init__()
@@ -303,10 +302,10 @@ class ExponentialUnitNorm(nn.Module):
 
 
 class DfOp(nn.Module):
-    df_order: Final[int]
-    df_bins: Final[int]
-    df_lookahead: Final[int]
-    freq_bins: Final[int]
+    df_order: int
+    df_bins: int
+    df_lookahead: int
+    freq_bins: int
 
     def __init__(
         self,
@@ -497,13 +496,13 @@ def as_strided(x: Tensor, window_size: int, lookahead: int, step: int = 1, dim: 
 
 
 class GroupedGRULayer(nn.Module):
-    input_size: Final[int]
-    hidden_size: Final[int]
-    out_size: Final[int]
-    bidirectional: Final[bool]
-    num_directions: Final[int]
-    groups: Final[int]
-    batch_first: Final[bool]
+    input_size: int
+    hidden_size: int
+    out_size: int
+    bidirectional: bool
+    num_directions: int
+    groups: int
+    batch_first: bool
 
     def __init__(
         self,
@@ -571,14 +570,14 @@ class GroupedGRULayer(nn.Module):
 
 
 class GroupedGRU(nn.Module):
-    groups: Final[int]
-    num_layers: Final[int]
-    batch_first: Final[bool]
-    hidden_size: Final[int]
-    bidirectional: Final[bool]
-    num_directions: Final[int]
-    shuffle: Final[bool]
-    add_outputs: Final[bool]
+    groups: int
+    num_layers: int
+    batch_first: bool
+    hidden_size: int
+    bidirectional: bool
+    num_directions: int
+    shuffle: bool
+    add_outputs: bool
 
     def __init__(
         self,
@@ -657,8 +656,8 @@ class GroupedGRU(nn.Module):
 
 
 class SqueezedGRU(nn.Module):
-    input_size: Final[int]
-    hidden_size: Final[int]
+    input_size: int
+    hidden_size: int
 
     def __init__(
         self,
@@ -696,9 +695,9 @@ class SqueezedGRU(nn.Module):
 
 
 class GroupedLinearEinsum(nn.Module):
-    input_size: Final[int]
-    hidden_size: Final[int]
-    groups: Final[int]
+    input_size: int
+    hidden_size: int
+    groups: int
 
     def __init__(self, input_size: int, hidden_size: int, groups: int = 1):
         super().__init__()
@@ -728,10 +727,10 @@ class GroupedLinearEinsum(nn.Module):
 
 
 class GroupedLinear(nn.Module):
-    input_size: Final[int]
-    hidden_size: Final[int]
-    groups: Final[int]
-    shuffle: Final[bool]
+    input_size: int
+    hidden_size: int
+    groups: int
+    shuffle: bool
 
     def __init__(self, input_size: int, hidden_size: int, groups: int = 1, shuffle: bool = True):
         super().__init__()

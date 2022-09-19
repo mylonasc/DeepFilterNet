@@ -1,6 +1,6 @@
 import warnings
 from collections import defaultdict
-from typing import Dict, Final, Iterable, List, Optional, Union
+from typing import Dict, Iterable, List, Optional, Union
 
 import torch
 import torch.nn.functional as F
@@ -92,9 +92,9 @@ class Istft(nn.Module):
 
 
 class MultiResSpecLoss(nn.Module):
-    gamma: Final[float]
-    f: Final[float]
-    f_complex: Final[Optional[List[float]]]
+    gamma: float
+    f: float
+    f_complex: Optional[List[float]]
 
     def __init__(
         self,
@@ -134,9 +134,9 @@ class MultiResSpecLoss(nn.Module):
 
 
 class SpectralLoss(nn.Module):
-    gamma: Final[float]
-    f_m: Final[float]
-    f_c: Final[float]
+    gamma: float
+    f_m: float
+    f_c: float
 
     def __init__(self, gamma: float = 1, factor_magnitude: float = 1, factor_complex: float = 1):
         super().__init__()
@@ -251,9 +251,9 @@ class DfAlphaLoss(nn.Module):
     Starting from lsnr_thresh, the penalty is increased and has its maximum at lsnr_min.
     """
 
-    factor: Final[float]
-    lsnr_thresh: Final[float]
-    lsnr_min: Final[float]
+    factor: float
+    lsnr_thresh: float
+    lsnr_min: float
 
     def __init__(self, factor: float = 1, lsnr_thresh: float = -7.5, lsnr_min: float = -10.0):
         super().__init__()
@@ -368,10 +368,10 @@ class LocalSnrLoss(nn.Module):
 
 
 class Loss(nn.Module):
-    ml_f: Final[float]
-    cal_f: Final[float]
-    sl_f: Final[float]
-    mrsl_f: Final[float]
+    ml_f: float
+    cal_f: float
+    sl_f: float
+    mrsl_f: float
 
     def __init__(self, state: DF, istft: Optional[Istft] = None):
         super().__init__()
