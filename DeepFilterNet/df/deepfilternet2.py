@@ -1,5 +1,5 @@
 from functools import partial
-from typing import Final, List, Optional, Tuple, Union
+from typing import  List, Optional, Tuple, Union
 
 import torch
 from loguru import logger
@@ -350,8 +350,8 @@ class DfDecoder(nn.Module):
 
 
 class DfNet(nn.Module):
-    run_df: Final[bool]
-    pad_specf: Final[bool]
+    run_df: bool
+    pad_specf: bool
 
     def __init__(
         self,
